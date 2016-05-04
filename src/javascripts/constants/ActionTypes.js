@@ -1,2 +1,5 @@
 export const RECEIVE_PLAYER_DECK = 'RECEIVE_PLAYER_DECK'
 export const NEW_PLAYER = 'NEW_PLAYER'
+export const PLAY_CARD = 'PLAY_CARD'
+export const RECEIVE_RESULT = 'RECEIVE_RESULT'
+export const REMOVE_CARD = 'REMOVE_CARD'

@@ -27,13 +27,58 @@ router.get('/uuid', function(req, res, next){
 
 router.get('/newGame', function(req, res, next){
   req.session.score = 0
+  req.session.computerScore = 0
   req.session.playerCards = [].concat(cards)
   req.session.computerCards = [].concat(cards)
   res.send(req.session.playerCards)
 })
 
-router.get('/playCard', function(req,res,next){
+router.post('/playCard', function(req,res,next){
+  //receive the card
+  //see if it is a card in the players deck
+  //if it is, computer picks a random card from its own deck (that card is removed from the computers deck)
+  //check to see which card wins
+  //whoever the winner is.. add a point to the winners score
+  //send the computer card, player card, the winner, the updated scores
+  const result = {
+    winner: "player",
+    computerScore: 1,
+    playerScore: 1,
+    playerCard: {
+        id: 1,
+        name: "Bulbasaur",
+        attack: 10,
+        defense: 5
+      },
+    computerCard: {
+      id: 2,
+      name: "Charmander",
+      attack: 5,
+      defense: 10
+    }
+  }
+  res.json(result)
+})
 
+router.get('/playCard', function(req,res,next){
+  const result = {
+    winner: "player",
+    computerScore: 1,
+    playerScore: 1,
+    playerCard: {
+        id: 1,
+        name: "Bulbasaur",
+        attack: 10,
+        defense: 5
+      },
+    computerCard: {
+      id: 2,
+      name: "Charmander",
+      attack: 5,
+      defense: 10
+    }
+  }
+  res.json(result)
 })
 
 module.exports = router;

@@ -1,0 +1,19 @@
+import React, { Component } from 'react'
+import Player from './Player'
+import Field from './Field'
+import Computer from './Computer'
+
+export default class Main extends Component{
+  render(){
+    return(
+      <div>
+        <h1>Main</h1>
+        <Player />
+        <Field />
+        <Computer />
+      </div>
+
+
+    )
+  }
+}

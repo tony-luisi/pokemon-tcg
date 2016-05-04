@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import { playCard } from '../../../actions'
+import { bindActionCreators } from 'redux'
 
 export default class Card extends Component {
   constructor(props){
@@ -6,7 +9,7 @@ export default class Card extends Component {
   }
 
   clickCard(){
-    
+    this.props.playCard(this.props.cardID)
   }
 
   render(){
@@ -21,3 +24,11 @@ export default class Card extends Component {
     )
   }
 }
+
+function mapDispatchToProps(dispatch){
+  return {
+    playCard: bindActionCreators(playCard, dispatch)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Card)

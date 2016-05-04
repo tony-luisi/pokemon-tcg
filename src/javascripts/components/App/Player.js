@@ -9,18 +9,17 @@ export default class Player extends Component{
   }
 
   render(){
-    var deck = []
     var player = this.props.player
-    if (this.props.deck){
-      deck = this.props.deck.toJS()
-    }
+    var deck = this.props.deck
     return (
       <div className="player">
         <h1>{player.name}</h1>
         <h2>Score: {player.score}</h2>
-        {deck.map(function(card, i){
-          return <Card key={i} {...card}/>
-        })}
+        <div className="deck">
+          {deck.map(function(card, i){
+            return <Card key={i} cardID={i} {...card}/>
+          })}
+        </div>
       </div>
     )
   }

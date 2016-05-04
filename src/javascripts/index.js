@@ -11,6 +11,7 @@ import reducer from './reducers'
 import { getPlayerDeck } from './actions'
 import { List, Map } from 'immutable'
 import Player from './components/App/Player'
+import Main from './components/App/Main'
 
 const middleware = process.env.NODE_ENV === 'production' ?
   [ thunk ] :
@@ -25,7 +26,7 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}/>
-      <Route path='/start' component={Player} />
+      <Route path='/start' component={Main} />
     </Router>
   </Provider>
   , document.getElementById('main'))

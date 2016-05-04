@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+.player {
+  color: red;
+}
+
+.deck {
+  color: tomato;
+  display: flex;
+}
