@@ -1,15 +1,14 @@
 
 import {
-  REMOVE_CARD
+  REMOVE_CARD, RECEIVE_RESULT
 } from '../constants/ActionTypes'
 
-const initialState = []
+const initialState = { result: {}, round: 0, deck: [] }
 
 export default function field(state = initialState, action){
   switch (action.type){
-    case REMOVE_CARD:
-      console.log('add card to field', action)
-      return state.concat([action.card])
+    case RECEIVE_RESULT:
+      return Object.assign({}, state, { result: action.result ,round: action.result.round ,deck: state.deck.concat([action.result.computerCard, action.result.playerCard])})
     default:
       return state;
   }

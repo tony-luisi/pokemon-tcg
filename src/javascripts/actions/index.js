@@ -36,10 +36,10 @@ export function removeCard(cardID, card) {
 }
 
 
-export function playCard(cardID){
+export function playCard(card){
   return dispatch => {
     post('/playCard')
-      .send({})
+      .send(card)
       .end((err, res) => {
         var result = JSON.parse(res.text)
         dispatch(receiveResult(result))

@@ -9,8 +9,10 @@ export default class Card extends Component {
   }
 
   clickCard(){
-    this.props.playCard(this.props.cardID)
-    this.props.removeCard(this.props.cardID, this.props)
+    if(!this.props.played){
+      this.props.playCard(this.props)
+      this.props.removeCard(this.props.cardID, this.props)
+    }
   }
 
   render(){
@@ -22,7 +24,6 @@ export default class Card extends Component {
         <h5>Defence: {pokemon.defense}</h5>
         <h5>pokemon id: {pokemon.id}</h5>
         <h5>card id: {this.props.cardID}</h5>
-
       </div>
 
     )

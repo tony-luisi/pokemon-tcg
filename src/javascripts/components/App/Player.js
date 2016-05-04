@@ -17,7 +17,7 @@ export default class Player extends Component{
         <h2>Score: {player.score}</h2>
         <div className="deck">
           {deck.map(function(card, i){
-            return <Card key={i} cardID={i} {...card}/>
+            return <Card played={false} key={i} cardID={i} {...card}/>
           })}
         </div>
       </div>

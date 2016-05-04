@@ -9,13 +9,7 @@ export default function deck(state = initialState, action){
   switch (action.type){
     case RECEIVE_PLAYER_DECK:
       return action.deck
-    case RECEIVE_RESULT:
-      console.log('result received by deck')
-      return state;
     case REMOVE_CARD:
-      var card = state.filter(function(card, i) {
-        return i === action.cardID
-      })
       return state.filter(function(card, i){
         return i !== action.cardID
       })
