@@ -9,8 +9,10 @@ export default class Player extends Component{
   }
 
   render(){
-    var deck = this.props.deck.toJS()
-    console.log('deck',deck)
+    var deck = []
+    if (this.props.deck){
+      deck = this.props.deck.toJS()
+    }
     return (
       <div className="player">
         <h1>Player!</h1>

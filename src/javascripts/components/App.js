@@ -15,7 +15,7 @@ export default class App extends Component {
     // console.log('start pressed')
     //need to add the deck to the state
     // console.log(this.props.)
-    // this.props.getPlayerDeck()
+    this.props.getPlayerDeck()
     browserHistory.push('/start')
   }
 

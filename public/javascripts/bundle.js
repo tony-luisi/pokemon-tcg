@@ -89,8 +89,8 @@
 	var middleware = process.env.NODE_ENV === 'production' ? [_reduxThunk2.default] : [_reduxThunk2.default, (0, _reduxLogger2.default)()];
 
 	var store = (0, _redux.createStore)(_reducers2.default, _redux.applyMiddleware.apply(undefined, middleware));
-	console.log('here');
-	store.dispatch((0, _actions.getPlayerDeck)());
+	// console.log('here')
+	// store.dispatch(getPlayerDeck())
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -45016,7 +45016,7 @@
 	      // console.log('start pressed')
 	      //need to add the deck to the state
 	      // console.log(this.props.)
-	      // this.props.getPlayerDeck()
+	      this.props.getPlayerDeck();
 	      _reactRouter.browserHistory.push('/start');
 	    }
 	  }, {
@@ -45104,8 +45104,10 @@
 	  _createClass(Player, [{
 	    key: 'render',
 	    value: function render() {
-	      var deck = this.props.deck.toJS();
-	      console.log('deck', deck);
+	      var deck = [];
+	      if (this.props.deck) {
+	        deck = this.props.deck.toJS();
+	      }
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'player' },
@@ -45169,14 +45171,35 @@
 	  }
 
 	  _createClass(Card, [{
+	    key: 'clickCard',
+	    value: function clickCard() {
+	      console.log('press');
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      console.log(this.props);
 	      var pokemon = this.props;
 	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        pokemon.name
+	        'div',
+	        { onClick: this.clickCard.bind(this) },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          pokemon.name
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'Attack: ',
+	          pokemon.attack
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'Defence: ',
+	          pokemon.defense
+	        )
 	      );
 	    }
 	  }]);
