@@ -20,8 +20,6 @@ const store = createStore(
   reducer,
   applyMiddleware(...middleware)
 )
-// console.log('here')
-// store.dispatch(getPlayerDeck())
 
 render(
   <Provider store={store}>

@@ -13,9 +13,7 @@ function getPokemonByNumber(number, callback){
     })
 }
 getPokemonByNumber(1, function(err, res){
-  console.log('response:', res.body.name)
   var pokemon = res.body
   var id = pokemon.id
-  console.log('writing pokemon',id,pokemon.name)
   fs.writeFile('./pokemon/' + id + '.json', JSON.stringify(pokemon))
 })

@@ -1,6 +1,5 @@
 var fs = require('fs')
 
-
 function getPokemonByNumber(num, callback){
   fs.readFile(__dirname + '/pokemon/'+num+'.json', 'utf-8', function(err, data){
     if (err){
@@ -11,7 +10,6 @@ function getPokemonByNumber(num, callback){
   })
 }
 
-
 function getRandomPokemon(noOfPokemon, callback){
   var pokemonArray = []
   for(var i = 0; i < noOfPokemon; i++){
@@ -21,6 +19,7 @@ function getRandomPokemon(noOfPokemon, callback){
   callback(null, pokemonArray)
 }
 
+//to be written
 getRandomPokemon(10, function(err, data){
   console.log(Object.keys(JSON.parse(data[0])))
   console.log(JSON.parse(data[0]).moves)

@@ -89,8 +89,6 @@
 	var middleware = process.env.NODE_ENV === 'production' ? [_reduxThunk2.default] : [_reduxThunk2.default, (0, _reduxLogger2.default)()];
 
 	var store = (0, _redux.createStore)(_reducers2.default, _redux.applyMiddleware.apply(undefined, middleware));
-	// console.log('here')
-	// store.dispatch(getPlayerDeck())
 
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -45013,10 +45011,8 @@
 	  _createClass(App, [{
 	    key: 'start',
 	    value: function start() {
-	      // console.log('start pressed')
-	      //need to add the deck to the state
-	      // console.log(this.props.)
 	      this.props.getPlayerDeck();
+	      this.props.newPlayer(this.refs.name.value);
 	      _reactRouter.browserHistory.push('/start');
 	    }
 	  }, {
@@ -45033,8 +45029,9 @@
 	        _react2.default.createElement(
 	          'h3',
 	          null,
-	          'Please press start'
+	          'Enter name and press start'
 	        ),
+	        _react2.default.createElement('input', { type: 'text', ref: 'name' }),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: this.start.bind(this) },
@@ -45052,7 +45049,8 @@
 
 	function mapDispatchToProps(dispatch) {
 	  return {
-	    getPlayerDeck: (0, _redux.bindActionCreators)(_actions.getPlayerDeck, dispatch)
+	    getPlayerDeck: (0, _redux.bindActionCreators)(_actions.getPlayerDeck, dispatch),
+	    newPlayer: (0, _redux.bindActionCreators)(_actions.newPlayer, dispatch)
 	  };
 	}
 
@@ -45105,6 +45103,7 @@
 	    key: 'render',
 	    value: function render() {
 	      var deck = [];
+	      var player = this.props.player;
 	      if (this.props.deck) {
 	        deck = this.props.deck.toJS();
 	      }
@@ -45114,7 +45113,13 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'Player!'
+	          player.name
+	        ),
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Score: ',
+	          player.score
 	        ),
 	        deck.map(function (card, i) {
 	          return _react2.default.createElement(_Card2.default, _extends({ key: i }, card));
@@ -45131,7 +45136,8 @@
 
 	function mapStateToProps(state) {
 	  return {
-	    deck: state.deck
+	    deck: state.deck,
+	    player: state.player
 	  };
 	}
 
@@ -45172,13 +45178,10 @@
 
 	  _createClass(Card, [{
 	    key: 'clickCard',
-	    value: function clickCard() {
-	      console.log('press');
-	    }
+	    value: function clickCard() {}
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props);
 	      var pokemon = this.props;
 	      return _react2.default.createElement(
 	        'div',
@@ -51910,6 +51913,8 @@
 	  switch (action.type) {
 	    case "RECEIVE_PLAYER_DECK":
 	      return Object.assign({}, state, { deck: action.deck });
+	    case "NEW_PLAYER":
+	      return Object.assign({}, state, { player: { name: action.name, score: 0 } });
 	    default:
 	      return state;
 	  }
@@ -59899,6 +59904,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.newPlayer = newPlayer;
 	exports.getPlayerDeck = getPlayerDeck;
 
 	var _superagent = __webpack_require__(711);
@@ -59918,11 +59924,17 @@
 	  };
 	}
 
+	function newPlayer(playerName) {
+	  return {
+	    type: types.NEW_PLAYER,
+	    name: playerName
+	  };
+	}
+
 	function getPlayerDeck() {
 	  return function (dispatch) {
 	    (0, _superagent.get)('/newGame').end(function (err, res) {
 	      var deck = (0, _immutable.fromJS)(JSON.parse(res.text));
-	      // deck.map(x => console.log(x.get('name')))
 	      dispatch(receivePlayerDeck(deck));
 	    });
 	  };
@@ -61448,6 +61460,7 @@
 	  value: true
 	});
 	var RECEIVE_PLAYER_DECK = exports.RECEIVE_PLAYER_DECK = 'RECEIVE_PLAYER_DECK';
+	var NEW_PLAYER = exports.NEW_PLAYER = 'NEW_PLAYER';
 
 /***/ }
 /******/ ]);

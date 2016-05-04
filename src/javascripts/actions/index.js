@@ -9,12 +9,18 @@ function receivePlayerDeck(deck){
   }
 }
 
+export function newPlayer(playerName){
+  return {
+    type: types.NEW_PLAYER,
+    name: playerName
+  }
+}
+
 export function getPlayerDeck() {
   return dispatch => {
     get('/newGame')
       .end((err, res) => {
         var deck = fromJS(JSON.parse(res.text))
-        // deck.map(x => console.log(x.get('name')))
         dispatch(receivePlayerDeck(deck))
       })
   }

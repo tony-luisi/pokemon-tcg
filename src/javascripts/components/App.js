@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Player from './App/Player'
 import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
-import {getPlayerDeck} from '../actions'
+import {getPlayerDeck, newPlayer} from '../actions'
 import { bindActionCreators } from 'redux'
 
 
@@ -12,10 +12,8 @@ export default class App extends Component {
   }
 
   start(){
-    // console.log('start pressed')
-    //need to add the deck to the state
-    // console.log(this.props.)
     this.props.getPlayerDeck()
+    this.props.newPlayer(this.refs.name.value)
     browserHistory.push('/start')
   }
 
@@ -23,7 +21,8 @@ export default class App extends Component {
     return (
       <div>
         <h1>Welcome to the Pokemon Card Game</h1>
-        <h3>Please press start</h3>
+        <h3>Enter name and press start</h3>
+        <input type="text" ref='name'></input>
         <button onClick={this.start.bind(this)}>Start</button>
       </div>
     )
@@ -32,7 +31,8 @@ export default class App extends Component {
 
 function mapDispatchToProps(dispatch){
   return {
-    getPlayerDeck: bindActionCreators(getPlayerDeck, dispatch)
+    getPlayerDeck: bindActionCreators(getPlayerDeck, dispatch),
+    newPlayer: bindActionCreators(newPlayer, dispatch)
   }
 }
 

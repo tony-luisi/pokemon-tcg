@@ -6,11 +6,10 @@ export default class Card extends Component {
   }
 
   clickCard(){
-    console.log('press')
+    
   }
 
   render(){
-    console.log(this.props)
     var pokemon = this.props
     return (
       <div onClick={this.clickCard.bind(this)}>

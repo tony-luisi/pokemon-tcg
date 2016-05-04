@@ -1,1 +1,2 @@
 export const RECEIVE_PLAYER_DECK = 'RECEIVE_PLAYER_DECK'
+export const NEW_PLAYER = 'NEW_PLAYER'
