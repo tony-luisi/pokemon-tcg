@@ -45191,6 +45191,7 @@
 	    key: 'clickCard',
 	    value: function clickCard() {
 	      this.props.playCard(this.props.cardID);
+	      this.props.removeCard(this.props.cardID, this.props);
 	    }
 	  }, {
 	    key: 'render',
@@ -45215,6 +45216,18 @@
 	          null,
 	          'Defence: ',
 	          pokemon.defense
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'pokemon id: ',
+	          pokemon.id
+	        ),
+	        _react2.default.createElement(
+	          'h5',
+	          null,
+	          'card id: ',
+	          this.props.cardID
 	        )
 	      );
 	    }
@@ -45228,7 +45241,8 @@
 
 	function mapDispatchToProps(dispatch) {
 	  return {
-	    playCard: (0, _redux.bindActionCreators)(_actions.playCard, dispatch)
+	    playCard: (0, _redux.bindActionCreators)(_actions.playCard, dispatch),
+	    removeCard: (0, _redux.bindActionCreators)(_actions.removeCard, dispatch)
 	  };
 	}
 
@@ -51938,11 +51952,16 @@
 
 	var _player2 = _interopRequireDefault(_player);
 
+	var _field = __webpack_require__(723);
+
+	var _field2 = _interopRequireDefault(_field);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = (0, _redux.combineReducers)({
 	  deck: _deck2.default,
-	  player: _player2.default
+	  player: _player2.default,
+	  field: _field2.default
 	});
 
 /***/ },
@@ -59965,10 +59984,11 @@
 	  };
 	}
 
-	function removeCard(cardID) {
+	function removeCard(cardID, card) {
 	  return {
 	    type: types.REMOVE_CARD,
-	    cardID: cardID
+	    cardID: cardID,
+	    card: card
 	  };
 	}
 
@@ -61537,9 +61557,14 @@
 	      return action.deck;
 	    case _ActionTypes.RECEIVE_RESULT:
 	      console.log('result received by deck');
-
-	    // case REMOVE_CARD:
-
+	      return state;
+	    case _ActionTypes.REMOVE_CARD:
+	      var card = state.filter(function (card, i) {
+	        return i === action.cardID;
+	      });
+	      return state.filter(function (card, i) {
+	        return i !== action.cardID;
+	      });
 	    default:
 	      return state;
 	  }
@@ -61652,11 +61677,19 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _Card = __webpack_require__(383);
+
+	var _Card2 = _interopRequireDefault(_Card);
+
+	var _reactRedux = __webpack_require__(397);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61685,6 +61718,13 @@
 	          'h1',
 	          null,
 	          'Field'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'deck' },
+	          this.props.deck.map(function (card, i) {
+	            return _react2.default.createElement(_Card2.default, _extends({ key: i, cardID: i }, card));
+	          })
 	        )
 	      );
 	    }
@@ -61694,6 +61734,15 @@
 	}(_react.Component);
 
 	exports.default = Field;
+
+
+	function mapStateToProps(state) {
+	  return {
+	    deck: state.field
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(Field);
 
 /***/ },
 /* 722 */
@@ -61747,6 +61796,34 @@
 	}(_react.Component);
 
 	exports.default = Computer;
+
+/***/ },
+/* 723 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = field;
+
+	var _ActionTypes = __webpack_require__(717);
+
+	var initialState = [];
+
+	function field() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _ActionTypes.REMOVE_CARD:
+	      console.log('add card to field', action);
+	      return state.concat([action.card]);
+	    default:
+	      return state;
+	  }
+	}
 
 /***/ }
 /******/ ]);

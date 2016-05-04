@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { playCard } from '../../../actions'
+import { playCard, removeCard } from '../../../actions'
 import { bindActionCreators } from 'redux'
 
 export default class Card extends Component {
@@ -10,6 +10,7 @@ export default class Card extends Component {
 
   clickCard(){
     this.props.playCard(this.props.cardID)
+    this.props.removeCard(this.props.cardID, this.props)
   }
 
   render(){
@@ -19,6 +20,9 @@ export default class Card extends Component {
         <h1>{pokemon.name}</h1>
         <h5>Attack: {pokemon.attack}</h5>
         <h5>Defence: {pokemon.defense}</h5>
+        <h5>pokemon id: {pokemon.id}</h5>
+        <h5>card id: {this.props.cardID}</h5>
+
       </div>
 
     )
@@ -27,7 +31,8 @@ export default class Card extends Component {
 
 function mapDispatchToProps(dispatch){
   return {
-    playCard: bindActionCreators(playCard, dispatch)
+    playCard: bindActionCreators(playCard, dispatch),
+    removeCard: bindActionCreators(removeCard, dispatch)
   }
 }
 

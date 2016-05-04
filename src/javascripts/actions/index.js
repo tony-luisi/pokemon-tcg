@@ -26,10 +26,11 @@ export function getPlayerDeck() {
 }
 
 
-export function removeCard(cardID) {
+export function removeCard(cardID, card) {
   return {
     type: types.REMOVE_CARD,
-    cardID: cardID
+    cardID: cardID,
+    card: card
   }
 
 }
