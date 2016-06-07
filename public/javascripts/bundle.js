@@ -34074,33 +34074,21 @@
 	        'div',
 	        { onClick: this.clickCard.bind(this), className: 'card' },
 	        _react2.default.createElement(
-	          'h1',
+	          'h3',
 	          null,
 	          pokemon.name
 	        ),
 	        _react2.default.createElement(
-	          'h5',
+	          'p',
 	          null,
 	          'Attack: ',
 	          pokemon.attack
 	        ),
 	        _react2.default.createElement(
-	          'h5',
+	          'p',
 	          null,
 	          'Defence: ',
 	          pokemon.defense
-	        ),
-	        _react2.default.createElement(
-	          'h5',
-	          null,
-	          'pokemon id: ',
-	          pokemon.id
-	        ),
-	        _react2.default.createElement(
-	          'h5',
-	          null,
-	          'card id: ',
-	          this.props.cardID
 	        )
 	      );
 	    }
@@ -42758,11 +42746,6 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          'h1',
-	          null,
-	          'Main'
-	        ),
 	        _react2.default.createElement(_Player2.default, null),
 	        _react2.default.createElement(_Field2.default, null),
 	        _react2.default.createElement(_Computer2.default, null)

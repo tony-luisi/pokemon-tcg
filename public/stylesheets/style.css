@@ -1,5 +1,6 @@
 body {
-  padding: 50px;
+  padding-left: 5em;
+  padding-right: 5em;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -14,10 +15,15 @@ a {
 .deck {
   color: tomato;
   display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .card {
   border-style: solid;
   border-color: tomato;
   border-width: thin;
+  width: 7em;
+  margin: 0.25em;
+  text-align: center;
 }

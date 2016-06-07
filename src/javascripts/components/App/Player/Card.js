@@ -19,11 +19,11 @@ export default class Card extends Component {
     var pokemon = this.props
     return (
       <div onClick={this.clickCard.bind(this)} className="card">
-        <h1>{pokemon.name}</h1>
-        <h5>Attack: {pokemon.attack}</h5>
-        <h5>Defence: {pokemon.defense}</h5>
-        <h5>pokemon id: {pokemon.id}</h5>
-        <h5>card id: {this.props.cardID}</h5>
+        <h3>{pokemon.name}</h3>
+        <p>Attack: {pokemon.attack}</p>
+        <p>Defence: {pokemon.defense}</p>
+        {/*<p>pokemon id: {pokemon.id}</p>
+        <p>card id: {this.props.cardID}</p>*/}
       </div>
 
     )
