@@ -23,6 +23,7 @@ export default class App extends Component {
         <h1>Welcome to the Pokemon Card Game</h1>
         <h3>Enter name and press start</h3>
         <input type="text" ref='name'></input>
+        {' '}
         <button onClick={this.start.bind(this)}>Start</button>
       </div>
     )
