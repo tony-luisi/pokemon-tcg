@@ -18,7 +18,7 @@ export default class Card extends Component {
   render(){
     var pokemon = this.props
     return (
-      <div onClick={this.clickCard.bind(this)}>
+      <div onClick={this.clickCard.bind(this)} className="card">
         <h1>{pokemon.name}</h1>
         <h5>Attack: {pokemon.attack}</h5>
         <h5>Defence: {pokemon.defense}</h5>

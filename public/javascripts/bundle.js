@@ -34072,7 +34072,7 @@
 	      var pokemon = this.props;
 	      return _react2.default.createElement(
 	        'div',
-	        { onClick: this.clickCard.bind(this) },
+	        { onClick: this.clickCard.bind(this), className: 'card' },
 	        _react2.default.createElement(
 	          'h1',
 	          null,
