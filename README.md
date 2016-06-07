@@ -1,17 +1,29 @@
-# pokemon-tcg
+# pokemon trading card game
 
-tech stack
--- client-server
--- server: express
-  -- sessions
-  -- knex sqlite (dev) | postgres (prod)
+## Currently in Development
 
+WORK IN PROGRESS - A pokemon trading card game using react redux and express
 
-Card:
+___
+
+### Install Instructions
+
++ git clone git@github.com:tony-luisi/pokemon-tcg.git
++ cd pokemon-tcg
++ npm i
+
+### Technology stack
++ client-server
++ server: express
+  - sessions
+  - knex sqlite (dev) | postgres (prod)
+
+### Design Considerations (work in progress)
+
+#### Cards
 { name: "Bulbasaur" }
 
-
-api:
+#### API
 //getPlayerDeck
 returns the players current deck
 //newPlayerDeck
@@ -19,13 +31,8 @@ returns a new deck and resets any current score
 //takeTurn
 accepts a card and returns a winner
 
-//
-
-
-
-
-//state Map
--- player1
-  >> cards
--- player2
-  >> cards
+#### State MAP
++ player1
+  - cards
++ player2
+  - cards
